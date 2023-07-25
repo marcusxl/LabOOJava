@@ -2,6 +2,7 @@ package one.digitalinovation.laboojava.negocio;
 
 import one.digitalinovation.laboojava.basedados.Banco;
 import one.digitalinovation.laboojava.entidade.Produto;
+import one.digitalinovation.laboojava.entidade.Livro;
 
 import java.util.Optional;
 
@@ -54,7 +55,23 @@ public class ProdutoNegocio {
      * @param codigo Código de cadastro do produto
      */
     public void excluir(String codigo) {
-        //TODO Implementar a exclusão
+
+        int produtoExclusao = -1;
+        for (int i = 0; i < bancoDados.getProdutos().length; i++) {
+
+            Produto produto = bancoDados.getProdutos()[i];
+            if (produto.getCodigo().equals(codigo)) {
+                produtoExclusao = i;
+                break;
+            }
+        }
+
+        if (produtoExclusao != -1) {
+            bancoDados.removerProduto(produtoExclusao);
+            System.out.println("Produto excluído com sucesso.");
+        } else {
+            System.out.println("Produto inexistente.");
+        }
     }
 
     /**
@@ -72,6 +89,22 @@ public class ProdutoNegocio {
         }
 
         return Optional.empty();
+    }
+
+    /*
+     * Consultar Livro
+     */
+    public void consultarLivro(String nome, Livro livro){
+        for(Produto  produto : bancoDados.getProdutos())
+            
+
+    }
+
+    /*
+     * Consultar Caderno
+     */
+    public void consultarCaderno(int materia){
+
     }
 
     /**
