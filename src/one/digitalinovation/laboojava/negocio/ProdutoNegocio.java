@@ -94,9 +94,16 @@ public class ProdutoNegocio {
     /*
      * Consultar Livro
      */
-    public void consultarLivro(String nome, Livro livro){
-        for(Produto  produto : bancoDados.getProdutos())
-            
+    public void consultarLivro(String nome){
+        for(Produto produto : bancoDados.getProdutos()){
+            for(int i = 0; i < produto.toString().length(); i++){
+                 if(produto.toString().equalsIgnoreCase(nome)){
+                    System.out.println(produto.toString());
+                 }
+            }
+
+        }
+
 
     }
 
