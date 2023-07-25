@@ -38,16 +38,9 @@ public class ClienteNegocio {
         }
     }
 
-    /**
-     * Cadastra um novo cliente.
-     * @param cliente Novo cliente que terá acesso a aplicação
-     */
-    //TODO Fazer a inclusão de cliente
-
-    /**
-     * Exclui um cliente específico.
-     * @param cpf CPF do cliente
-     */
     //TODO Fazer a exclusão de cliente
 
+    //TODO Fazer a inclusão de cliente
+
 }
+

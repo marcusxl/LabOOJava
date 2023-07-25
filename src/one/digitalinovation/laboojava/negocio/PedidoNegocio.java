@@ -8,6 +8,7 @@ import one.digitalinovation.laboojava.entidade.Produto;
 import java.time.LocalDate;
 import java.util.List;
 
+
 /**
  * Classe para manipular a entidade {@link Pedido}.
  * @author thiago leite
@@ -57,15 +58,35 @@ public class PedidoNegocio {
      */
     public void salvar(Pedido novoPedido, Cupom cupom) {
 
-        //Definir padrão código
-        //Pegar data do dia corrente
-        //Formatar código
+        String codigo = "PE%4d%04d";
+        LocalDate hoje = LocalDate.now();
+        codigo = String.format(codigo, hoje.getYear(), hoje.getMonthValue(), bancoDados.getPedidos().length);
 
-        //Setar código no pedido
-        //Setar cliente no pedido
-        //Calcular e set total
-        //Adicionar no banco
-        //Mensagem
+        novoPedido.setCodigo(codigo);
+        novoPedido.setCliente(bancoDados.getCliente());
+        novoPedido.setTotal(calcularTotal(novoPedido.getProduto(), cupom));
+        bancoDados.adicionarPedido(novoPedido);
+        System.out.println("Pedido salvo com sucesso.");
+    }
+
+    /*
+     * Consultar pedido por codigo
+     */
+    public void consultar(String codigo) {
+
+        for (Pedido pedido: bancoDados.getPedidos()) {
+
+            if (pedido.getCodigo().equals(codigo)) {
+               System.out.println(pedido.toString());
+            }
+        
+        else{
+            System.out.println(
+                "Pedido nao existe"
+            );
+        }
+    }
+        
     }
 
     /**
@@ -95,6 +116,17 @@ public class PedidoNegocio {
     /**
      * Lista todos os pedidos realizados.
      */
-    //TODO Método de listar todos os pedidos
+    public void listarPedidos(){
+        if(bancoDados.getPedidos().length == 0){
+            System.out.println("Nao existe pedido feito");
+        }
+        else {
+            for(Pedido pedidos : bancoDados.getPedidos()){
+                System.out.println(pedidos.toString());
+            }
+        }
+       
+    }
+
 
 }
